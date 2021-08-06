@@ -33,3 +33,16 @@ data("tissue_gene_expression")
 fit <- train(tissue_gene_expression$x, tissue_gene_expression$y,
              method = "knn", datax = data.frame(k = seq(1, 7, 2)))
 fit
+
+---------
+Bootstrsap
+set.seed(1, sample.kind = "Rounding") # if R 3.6 or later
+y <- rnorm(100, 0, 1)
+set.seed(1, sample.kind="Rounding") # if R 3.6 or later
+
+ddf <- createResample(y, 10000)
+xx <- sapply(ddf, function(num){
+  quantile(y[num], 0.75)
+})
+sd(xx)
+mean(xx)
